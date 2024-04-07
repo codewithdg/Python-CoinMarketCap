@@ -15,7 +15,7 @@ class CoinMarketCap:
         self.session = Session()
         self.session.headers.update(self.headers)
 
-    def get_coins(self):
+    def get_all_coins(self):
         url = self.api_url + "/v1/cryptocurrency/map"
         r = self.session.get(url)
         data = r.json()['data']
@@ -35,8 +35,8 @@ class CoinMarketCap:
 def main():
     cmc = CoinMarketCap(API_KEY)
 
-    # pp(cmc.get_coins())
-    pp(cmc.get_price('BTC'))
+    coin_symbol = input("Enter the crypto ticker symbol: ")
+    pp(cmc.get_price(coin_symbol))
 
 
 
